@@ -1,4 +1,4 @@
-import { MapView } from './MapView';
-import { Loading } from './Loading';
-
-export { MapView, Loading };
+export { ReactLogo } from './ReactLogo';
+export { MapView } from './MapView';
+export { Loading } from './Loading';
+export { BtnMyLocation } from './BtnMyLocation';

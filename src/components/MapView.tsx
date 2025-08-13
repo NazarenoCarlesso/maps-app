@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useLayoutEffect, useRef } from 'react'
-import { PlacesContext } from '../context'
+import { MapContext, PlacesContext } from '../context'
 import { Loading } from './Loading';
 // import { Map } from 'mapbox-gl';
 import { Map } from 'maplibre-gl';
 
 export const MapView = () => {
-  const { isLoading, userLocation } = useContext(PlacesContext)
+  const { isLoading, userLocation } = useContext(PlacesContext);
+  const { setMap } = useContext(MapContext);
   const mapDiv = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (!isLoading) {
-      new Map({
+      const map = new Map({
         container: mapDiv.current!,
         // style: 'mapbox://styles/mapbox/streets-v12',
         // style: 'https://demotiles.maplibre.org/style.json',
@@ -19,6 +20,8 @@ export const MapView = () => {
         center: userLocation,
         zoom: 14
       });
+
+      setMap(map);
     }
   }, [isLoading])
 
